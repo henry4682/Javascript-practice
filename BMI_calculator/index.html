@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI calculator</title>
+    <link rel="stylesheet" href="style.scss">
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.js" integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <main>
+        <h1>BMI calculator</h1>
+        
+        <span>
+            <h3>Weight(kg)</h3>
+            <input class="weight" type="text">
+        </span>
+        <span>
+            <h3>Height(m)</h3>
+            <input class="height" type="text">
+        </span>
+        <button>Check Result</button>
+        <span>
+            <h3>BMI (kg/m^2)</h3>
+            <h4></h4>
+        </span>
+        
+    </main>
+    <script>
+        $(function(){
+            var $btn = $('button');
+
+            $btn.on('click',function(e){
+                e.preventDefault();
+                let weight =Number( $(".weight").val());
+                let height =Number( $('.height').val());
+                console.log("weight", weight,'height',height)
+                let BMI = (weight/Math.pow(height,2)).toFixed(2)
+                let result = $('h4').html(BMI)
+                console.log('result',result)
+            })
+        })
+        
+        
+        
+
+
+    </script>
+</body>
+</html>
