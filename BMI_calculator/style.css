@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: cadetblue;
+}
+body main {
+  width: 800px;
+  margin: 20px auto;
+  display: flex;
+  gap: 10px;
+}
+body main aside {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+body main aside span {
+  height: 100%;
+}
+body main aside span h3 {
+  margin: 5px 0;
+}
+body main aside span input {
+  width: 200px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+body main aside span h4.helping {
+  color: #333;
+}
+body main aside span h4.result {
+  display: block;
+}
+body main aside span button {
+  background: #fff;
+  border: 1px solid #333;
+  border-radius: 1000px;
+  width: 25%;
+}
+body main aside span button:active, body main aside span button:hover {
+  cursor: pointer;
+}
+body main aside ul {
+  height: 100%;
+  list-style: none;
+}
+body main aside ul li {
+  height: 25%;
+  padding: 5px;
+  margin: 5px 0;
+}
+body main aside ul li.light {
+  background: rgba(64, 237, 179, 0.63);
+}
+body main aside ul li.normal {
+  background: rgb(27, 226, 23);
+}
+body main aside ul li.heavy {
+  background: orange;
+}
+body main aside ul li.fat {
+  background: red;
+}
+body main aside ul li.grey {
+  background: #666;
+  color: #999;
+  opacity: 0.5;
+  transition: 0.5s;
+}/*# sourceMappingURL=style.css.map */

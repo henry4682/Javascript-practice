@@ -1,6 +1,83 @@
+$light:rgba(64, 237, 179, 0.63);
+$normal:rgb(27, 226, 23);
+$heavy:orange;
+$fat:red;
+$grey:#666;
 *{
-    border: 1px solid #333;
+    // border:1px solid red;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
-main{
-    margin: 0 auto;
+body{
+    background-color:cadetblue;
+    main {
+        width: 800px;
+        margin: 20px auto;
+        display: flex;
+        gap: 10px;
+
+        aside{
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            span{
+                height: 100%;
+
+                h3{
+                margin: 5px 0; 
+                }
+                input{
+                    width: 200px;
+                    margin: 5px 0;
+                    border-radius: 5px;
+                }
+                h4.helping{
+                    color: #333;
+                }
+                h4.result{
+                    display: block;
+                }
+                button{
+                    background: #fff;
+                    border: 1px solid #333;
+                    border-radius: 1000px;
+                    width: 25%;
+                    &:active, &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            ul{
+                height: 100%;
+                list-style: none;
+                li{
+                    height: 25%;
+                    padding: 5px;
+                    margin: 5px 0;
+                }
+                li.light{
+                    background: $light;
+                }
+                li.normal{
+                    background: $normal;
+                }
+                li.heavy{
+                    background: $heavy;
+                }
+                li.fat{
+                    background: $fat;
+                }
+                li.grey{
+                    background: $grey;
+                    color: #999;
+                    opacity:0.5;
+                    transition:0.5s;
+                }
+
+            }
+        }
+    }
 }

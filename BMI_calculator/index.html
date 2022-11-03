@@ -5,40 +5,103 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMI calculator</title>
-    <link rel="stylesheet" href="style.scss">
+    <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.1.slim.js" integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
 </head>
 <body>
     <main>
+        <aside>
         <h1>BMI calculator</h1>
-        
         <span>
-            <h3>Weight(kg)</h3>
-            <input class="weight" type="text">
+            <h3>Height(cm)</h3>
+            <h4 class="helping">Key in your height into centimeters</h4>
+            <input class="height" type="number" >
         </span>
         <span>
-            <h3>Height(m)</h3>
-            <input class="height" type="text">
+            <h3>Weight (kg)</h3>
+            <input class="weight"  type="number" >
         </span>
-        <button>Check Result</button>
         <span>
-            <h3>BMI (kg/m^2)</h3>
-            <h4></h4>
+            <button type="button" class="resultBtn">Check Result</button>
+            <button type="button" class="reset"> Reset </button>
         </span>
-        
+        <span>
+            <h3>BMI (kg/m^2) :<h4 class="result"></h4> </h3>
+        </span>
+    </aside>
+    <aside>
+        <ul>
+            <li class="light">
+                <h3> BMI < 18.5 </h3>
+                <p>「體重過輕」，需要多運動，均衡飲食，以增加體能，維持健康！</p>
+            </li>
+            <li class="normal">
+                <h3>18.5 ≤ BMI < 24</h3>
+                <p>恭喜！「健康體重」，要繼續保持！</p>
+            </li>
+            <li class="heavy">
+                <h3>24 ≤ BMI < 27</h3>
+                <p>「體重過重」了，要小心囉，趕快力行「健康體重管理」！</p>
+            </li>
+            <li class="fat">
+                <h3>BMI ≥ 27</h3>
+                <p>啊～「肥胖」，需要立刻力行「健康體重管理」囉！</p>
+            </li>
+        </ul>
+    </aside>
     </main>
+    
     <script>
-        $(function(){
-            var $btn = $('button');
+        $(function() {
+            var $resultBtn = $('.resultBtn');
+            var $resetBtn = $('.reset')
+            var $input = $('input');
 
-            $btn.on('click',function(e){
+            //計算BMI按鈕
+            $resultBtn.on('click',e =>{
                 e.preventDefault();
+                // 先移除所有凸顯
+                $('li').removeClass('grey')
+                // 先取得身高與體重輸入欄位的值
                 let weight =Number( $(".weight").val());
                 let height =Number( $('.height').val());
-                console.log("weight", weight,'height',height)
-                let BMI = (weight/Math.pow(height,2)).toFixed(2)
-                let result = $('h4').html(BMI)
-                console.log('result',result)
+
+                // 計算BMI 並確保回傳的是數值
+                let BMI = Number((weight/Math.pow(height/100,2)).toFixed(2));
+                // 將BMI數據呈現在畫面上
+                $('.result').html(BMI )
+
+                // 將與計算出的BMI符合區間的說明凸顯出來
+                switch (true) {
+                    case BMI < 18.5:
+                        $('li').not('.light').addClass('grey');
+                        $('.result').css({'color':'rgba(64, 237, 179, 0.63)'})
+                        break;
+                    case BMI < 24 && BMI >= 18.5:
+                        $('li').not('.normal').addClass('grey');
+                        $('.result').css({'color':'rgb(27, 226, 23)'})
+                        break;
+                    case BMI < 27 && BMI >= 24:
+                        $('li').not('.heavy').addClass('grey');
+                        $('.result').css({'color':'orange'})
+                        break;
+                    case BMI >= 27 :
+                        $('li').not('.fat').addClass('grey');
+                        $('.result').css({'color':'red'})
+                        break;
+                }
+              
+                
+            })
+            //清空按鈕
+            $resetBtn.on('click', e => {
+                e.preventDefault();
+                // 消除凸顯
+                $('li').removeClass('grey');
+                // 清空輸入欄裡的值
+                $('input').val('');
+                // 清空BMI
+                $('.result').html('')
             })
         })
         
