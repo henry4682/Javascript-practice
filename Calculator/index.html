@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="display">0</div>
+            <section >
+                <aside class="cal">
+                    <div class="row">
+                        <button >AC</button>
+                        <button >+/-</button>
+                        <button >&#37</button>
+                        <button >÷</button>
+                    </div>
+                    <div class="row">
+                        <button >7</button>
+                        <button >8</button>
+                        <button >9</button>
+                        <button >×</button>
+                    </div>
+                    <div class="row">
+                        <button >4</button>
+                        <button >5</button>
+                        <button >6</button>
+                        <button >-</button>
+                    </div>
+                    <div class="row">
+                        <button >1</button>
+                        <button >2</button>
+                        <button >3</button>
+                        <button >+</button>
+                    </div>
+                    <div class="row">
+                        <button >0</button>
+                        <button >.</button>
+                        <button >=</button>
+                    </div>
+                </aside>
+                <aside class="process">
+                </aside>
+            </section>
+        </div>
+        <aside class="list">
+            <p>計算紀錄：</p>
+        </aside>
+        
+    </main>
+    <script>
+        $(() => {
+            var display = $('.display');
+
+            $(':button').on('click',(e) => {
+                var process = $('.process');
+                switch (e.target.textContent) {
+                    case '÷':
+                    process.text(process.text() + '/');
+                    display.text(display.text()+'÷')
+                        break;
+                    case '×':
+                        process.text(process.text() + '*');
+                        display.text(display.text()+'×')
+                        break;
+                    case '=':
+                        $('.list p').after(`<div>${process.text()}=${eval(process.text())}</div>`)
+                        process.text(Number(eval(process.text())).toFixed(2))
+                        display.text(Number(eval(process.text())).toFixed(2))
+                        break;
+                    case '%': 
+                        process.text(process.text() + '/100')
+                        display.text(display.text()+'%')
+                        break;
+                    case 'AC': //清空按鈕
+                        process.text('');
+                        display.text('0')
+                        break;
+                    case '+/-': //切換正負數符號
+                        //若已帶有負數符號則將負數符號替換成'';若沒有則加上
+                        if(process.text().trim().charAt(0) === '-'){
+                            process.text(process.text().replace('-', '') );
+                            display.text(display.text().replace('-', '') );
+                        }else{
+                            process.text('-'.concat(process.text().trim()))
+                            display.text('-'.concat(display.text().trim()))
+                        }
+                        break;
+                
+                    default:
+                    process.text(process.text()+e.target.textContent)
+                    if(display.text() !== "0"){
+                        display.text(display.text() + e.target.textContent)
+                    }else{
+                        display.text(e.target.textContent)
+                    }
+                        break;
+                }
+            })
+        })
+    </script>
+</body>
+</html>
