@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO-List</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <main>
+        <h1>TODO List</h1>
+        <section class="form">
+            <table>
+                <thead>
+                    <th>TODO</th>
+                    <th>deadline</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <td>
+                        <input class="addInput" type="text">
+                    </td>
+                    <td>
+                        <input class="addDate" type="date">
+                    </td>
+                    <td>
+                        <button class="addBtn">送出</button>
+                    </td>
+                </tbody>
+            </table>
+        </section>
+        <section class="list">
+            <table>
+                <tbody class="list-table">
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script>
+        $(document).ready(function() {
+            $addInput = $('.addInput')
+            $addDate = $('.addDate')
+            $addBtn = $('.addBtn')
+    
+            // 新增按鈕事件
+            $addBtn.on('click', (e) =>{
+                if($addInput.val() !== '' ) {
+                    var $newList = $(`
+                    <tr id="${$addInput.val()}">
+                        <td><p>${$addInput.val()}</p> </td>
+                        <td><p>截止日期:${$addDate.val()}</p></td>
+                        <td class="delete"><button>刪除</button></td>
+                    </tr>`)
+                    
+                    $('.list-table').append($newList)
+                    //刪除按鈕事件
+                    $('tr').on('click','.delete button',function(e) {
+                        $(this).parent().parent().remove();
+                    })
+                    // 清空欄位
+                    $addInput.val('')
+                    $addDate.val('')
+                }
+            })
+        })
+ 
+    </script>
+</body>
+</html>

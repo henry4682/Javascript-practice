@@ -61,7 +61,7 @@
             $resultBtn.on('click',e =>{
                 e.preventDefault();
                 // 先移除所有凸顯
-                $('li').removeClass('grey')
+                $('li').removeClass('grey');
                 // 先取得身高與體重輸入欄位的值
                 let weight =Number( $(".weight").val());
                 let height =Number( $('.height').val());
@@ -69,29 +69,27 @@
                 // 計算BMI 並確保回傳的是數值
                 let BMI = Number((weight/Math.pow(height/100,2)).toFixed(2));
                 // 將BMI數據呈現在畫面上
-                $('.result').html(BMI )
+                $('.result').html(BMI);
 
                 // 將與計算出的BMI符合區間的說明凸顯出來
                 switch (true) {
                     case BMI < 18.5:
                         $('li').not('.light').addClass('grey');
-                        $('.result').css({'color':'rgba(64, 237, 179, 0.63)'})
+                        $('.result').css({'color':'rgba(64, 237, 179, 0.63)'});
                         break;
                     case BMI < 24 && BMI >= 18.5:
                         $('li').not('.normal').addClass('grey');
-                        $('.result').css({'color':'rgb(27, 226, 23)'})
+                        $('.result').css({'color':'rgb(27, 226, 23)'});
                         break;
                     case BMI < 27 && BMI >= 24:
                         $('li').not('.heavy').addClass('grey');
-                        $('.result').css({'color':'orange'})
+                        $('.result').css({'color':'orange'});
                         break;
                     case BMI >= 27 :
                         $('li').not('.fat').addClass('grey');
-                        $('.result').css({'color':'red'})
+                        $('.result').css({'color':'red'});
                         break;
-                }
-              
-                
+                }      
             })
             //清空按鈕
             $resetBtn.on('click', e => {
@@ -101,7 +99,7 @@
                 // 清空輸入欄裡的值
                 $('input').val('');
                 // 清空BMI
-                $('.result').html('')
+                $('.result').html('');
             })
         })
         
