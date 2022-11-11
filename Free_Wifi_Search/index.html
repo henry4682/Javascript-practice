@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Wifi Search</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAcY0x7CAFpTTitouR1-e3d8_yeTUxY2g&callback=initMap"
+      async
+      defer
+    ></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gmap3/7.2.0/gmap3.min.js"></script> -->
+  </head>
+  <body>
+    <main>
+      <div class="try"></div>
+      <h2>iTaiwan 免費Wifi熱點</h2>
+      <h3>
+        若無資料請按此
+        <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank"
+          >連結</a
+        >
+        裡的按鈕進行瀏覽器跨源存取
+      </h3>
+      <div class="form">
+        <label for="">縣市篩選：</label>
+        <select class="county-selector" name="" id="">
+          <option selected value="">請選擇</option>
+          <!-- 動態新增 -->
+        </select>
+        <label for="">鄉鎮市區篩選：</label>
+        <select class="district-selector" name="" id="">
+          <option value="">請選擇</option>
+        </select>
+        <form>
+          <input class="name" type="radio" name="radio" value="name" />
+          <label for="">依地名搜尋</label>
+          <input class="address" type="radio" name="radio" value="address" />
+          <label for="">依地址搜尋</label>
+
+          <input class="search-input" type="text" placeholder="搜尋..." />
+
+          <button class="query" type="submit">搜尋</button>
+        </form>
+      </div>
+      <div class="container">
+        <section>
+          <div class="data-info">
+            <div class="data-total"></div>
+            <div class="perPage"></div>
+            <div class="data-perPage"></div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>地點</th>
+                <th>地址</th>
+                <th>位置</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 動態新增 -->
+            </tbody>
+          </table>
+          <nav class="pagination">
+            <button class="prev-page"><</button>
+            <button class="next-page">></button>
+          </nav>
+        </section>
+        <div id="map"></div>
+      </div>
+    </main>
+    <script>
+      $(() => {
+        //待開發:按地址或地點搜尋用input radio、串接地圖api
+
+        var $searchInput = $(".search-input");
+        var $countySelector = $(".county-selector");
+        var $districtSelector = $(".district-selector");
+        var searchBtn = $(".query");
+        var localStorage = window.localStorage;
+
+        var api = "https://www.gsp.gov.tw/iTaiwan/itw_tw.json";
+        var county_api =
+          "https://linkmotc.map8.zone/app/data?modelName=city&skip=0&limit=&whereOptions=";
+        var district_api =
+          "https://linkmotc.map8.zone/app/data?modelName=town&skip=0&limit=&whereOptions=";
+        var cors_api = "https://cors-anywhere.herokuapp.com/";
+
+        $.ajax({
+          method: "GET",
+          url: `${cors_api}${api}`,
+          dataType: "json",
+          success: (response) => {
+            localStorage.setItem("data", JSON.stringify(response));
+          },
+          error: (error) => {
+            console.error(error);
+          },
+        });
+
+        $.ajax({
+          method: "GET",
+          url: `${cors_api}${county_api}`,
+          dataType: "json",
+          success: (response) => {
+            localStorage.setItem("countyData", JSON.stringify(response));
+          },
+          error: (error) => {
+            console.error(error);
+          },
+        });
+
+        $.ajax({
+          method: "GET",
+          url: `${cors_api}${district_api}`,
+          dataType: "json",
+          success: (response) => {
+            localStorage.setItem("districtData", JSON.stringify(response));
+          },
+          error: (error) => {
+            console.error(error);
+          },
+        });
+
+        var data = JSON.parse(localStorage.getItem("data"));
+
+        var countyData = JSON.parse(localStorage.getItem("countyData"));
+
+        var districtData = JSON.parse(localStorage.getItem("districtData"));
+
+        var page = 1;
+
+        var perPage = 20;
+
+        var offset = perPage * (page - 1);
+
+        var total = data.length;
+
+        var totalPage = Math.ceil(total / perPage);
+
+        function updateData(data, perPage, page) {
+          // 切割新資料
+          var perPageData = data.slice(perPage * (page - 1), perPage * page);
+          // 移除舊資料
+          $("tbody").children().remove();
+          // 將新資料append進tbody
+          perPageData.map((v, i) => {
+            $("tbody").append(`
+                    <tr>
+                        <td>${v.NAME.trim()}</td>
+                        <td>${v.ADDR.trim()}</td>
+                        <td>
+                          <button id='${i}' class='center' data-lat='${
+              v.LATITUDE
+            }' data-lon='${v.LONGITUDE}'>前往</button></td>
+                    </tr>`);
+          });
+        }
+        // 第一次載入
+        updateData(data, perPage, page);
+
+        // 生成頁數
+        for (let i = page; i <= totalPage; i++) {
+          $(".next-page").before(`<button class='page'>${i}</button>`);
+        }
+        $(".page").hide();
+        $(".page").slice(0, 10).show();
+        $(".page")
+          .eq(totalPage - 1)
+          .show();
+        $(".page")
+          .eq(totalPage - 1)
+          .show()
+          .before("<p>...</p>");
+
+        function paginationDomSwitch(page, totalPage) {
+          if (totalPage > 10) {
+            switch (true) {
+              // 第7頁到第494頁的pagination
+              case page >= 7 && page <= totalPage - 7:
+                // 清空pagination
+                $(".page").hide();
+                // 抓第1頁之後有沒有...
+                if ($(`.page`).eq(0).next().is("p")) {
+                  // 有 -> 顯示第1頁
+                  $(".page").eq(0).show();
+                } else {
+                  // 沒有 -> 顯示第1頁並在之後加上...
+                  $(".page").eq(0).show().after("<p>...</p>");
+                }
+                // 抓最後1頁之後有沒有...
+                if (
+                  $(`.page`)
+                    .eq(totalPage - 1)
+                    .prev()
+                    .is("p")
+                ) {
+                  // 有 -> 顯示最後1頁
+                  $(".page")
+                    .eq(totalPage - 1)
+                    .show();
+                } else {
+                  // 沒有 -> 顯示最後1頁並在之前加上...
+                  $(".page")
+                    .eq(totalPage - 1)
+                    .show()
+                    .before("<p>...</p>");
+                }
+                // 顯示10個其他頁數
+                $(`.page`)
+                  .slice(page - 5, page + 5)
+                  .show();
+                break;
+              // 第7頁以前的pagination
+              case page < 7:
+                // 清空pagination
+                $(".page").hide();
+                // 移除...
+                $(".page").eq(0).next().remove("p");
+                // 顯示第1-10頁
+                $(".page").slice(0, 10).show();
+                // 抓最後1頁之後有沒有...
+                if (
+                  $(`.page`)
+                    .eq(totalPage - 1)
+                    .prev()
+                    .is("p")
+                ) {
+                  // 有 -> 顯示最後1頁
+                  $(".page")
+                    .eq(totalPage - 1)
+                    .show();
+                } else {
+                  // 沒有 -> 顯示最後1頁並在之前加上...
+                  $(".page")
+                    .eq(totalPage - 1)
+                    .show()
+                    .before("<p>...</p>");
+                }
+                break;
+              // 第494頁以前的pagination
+              case page > totalPage - 7:
+                // 清空pagination
+                $(".page").hide();
+                // 移除...
+                $(".page")
+                  .eq(totalPage - 1)
+                  .prev()
+                  .remove("p");
+                // 顯示第1頁
+                $(".page").eq(0).show();
+                // 抓第1頁之後有沒有...
+                if ($(`.page`).eq(0).next().is("p")) {
+                  // 有 -> 顯示第1頁
+                  $(".page").eq(0).show();
+                } else {
+                  // 沒有 -> 顯示第1頁並在之後加上...
+                  $(".page").eq(0).show().after("<p>...</p>");
+                }
+                // 顯示最後前10頁
+                $(".page")
+                  .slice(totalPage - 10, totalPage)
+                  .show();
+                break;
+            }
+          } else {
+            $(".page").remove();
+            $("p").remove();
+            for (let i = 1; i <= totalPage; i++) {
+              $(".next-page").before(`<button class='page'>${i}</button>`);
+            }
+          }
+        }
+        function dataCountSwitch(data, page) {
+          $(".data-total").text(`共 ${data.length} 筆資料,`);
+          $(".perPage").text(`第 ${page} 頁`);
+
+          lastPage = Math.ceil(data.length / 20);
+          if (page === lastPage) {
+            $(".data-perPage").text(
+              `第 ${1 + (page - 1) * 20} 筆 - 第 ${data.length} 筆`
+            );
+          } else {
+            $(".data-perPage").text(
+              `第 ${1 + (page - 1) * 20} 筆 - 第 ${page * 20} 筆`
+            );
+          }
+        }
+        dataCountSwitch(data, page);
+
+        (function selectorDOM() {
+          countyData.map((county, i) => {
+            $countySelector.append(`
+          <option  value='${county.city_name}' id='${county.city_name}'>${county.city_name}</option>`);
+          });
+        })();
+
+        var newData = [];
+
+        $districtSelector.on("change", (e) => {
+          var district = $(e.target).val();
+          newData = data.filter((v) => v.ADDR.includes(county + district));
+          if (newData.length > 0) {
+            localStorage.setItem("newData", JSON.stringify(newData));
+          }
+
+          totalPage = Math.ceil(newData.length / perPage);
+          $(".page").remove();
+          $("p").remove();
+          page = 1;
+          for (let i = page; i <= totalPage; i++) {
+            $(".next-page").before(`<button class='page'>${i}</button>`);
+          }
+          updateData(newData, 20, page);
+          dataCountSwitch(newData, page);
+          paginationDomSwitch(page, totalPage);
+        });
+
+        $countySelector.on("change", (e) => {
+          $(".district").remove();
+          county = $(e.target).val();
+          var districtArr = districtData.filter(
+            (v, i) => v.city_name === county
+          );
+          districtArr.map((district, i) => {
+            $districtSelector.append(
+              `<option class='district' name='${district.city_name}' value='${district.town_name}'>${district.town_name}</option>`
+            );
+          });
+
+          newData = data.filter((v) => v.ADDR.includes(county));
+          if (newData.length > 0) {
+            localStorage.setItem("newData", JSON.stringify(newData));
+          }
+          totalPage = Math.ceil(newData.length / perPage);
+          $(".page").remove();
+          $("p").remove();
+          page = 1;
+          for (let i = page; i <= totalPage; i++) {
+            $(".next-page").before(`<button class='page'>${i}</button>`);
+          }
+          updateData(newData, 20, page);
+          dataCountSwitch(newData, page);
+          paginationDomSwitch(page, totalPage);
+        });
+
+        $searchBtn.on("click", (e) => {
+          e.preventDefault();
+          keyword = $searchInput.val();
+          var newDataIndex = [];
+          radioValue = $("input[type=radio]:checked").val();
+          if (radioValue === "name") {
+            newData = data.filter((v) => v.NAME.includes(keyword));
+          } else {
+            newData = data.filter((v) => v.ADDR.includes(keyword));
+          }
+
+          if (newData.length > 0) {
+            localStorage.setItem("newData", JSON.stringify(newData));
+          }
+
+          $(".page").remove();
+          $("p").remove();
+          page = 1;
+          for (let i = page; i <= totalPage; i++) {
+            $(".next-page").before(`<button class='page'>${i}</button>`);
+          }
+
+          totalPage = Math.ceil(newData.length / perPage);
+          updateData(newData, 20, page);
+          dataCountSwitch(newData, page);
+          paginationDomSwitch(page, totalPage);
+        });
+
+        $(".pagination").on("click", ".page", (e) => {
+          // 取得事件觸發頁數
+          page = Number($(e.target).text());
+          // console.log('page',page,'newData in page',newData)
+          // 更換資料
+          if (newData.length > 0) {
+            updateData(newData, 20, page || 1);
+            paginationDomSwitch(page, totalPage);
+            dataCountSwitch(newData, page || 1);
+          } else {
+            updateData(data, perPage, page);
+            paginationDomSwitch(page, totalPage);
+            dataCountSwitch(data, page);
+          }
+
+          $(".page").removeClass("onPage");
+          $(e.target).addClass("onPage");
+        });
+
+        $(".prev-page").on("click", (e) => {
+          e.preventDefault();
+          if (page > 1) {
+            page = page - 1;
+            $(".page").removeClass("onPage");
+            $(".page")
+              .eq(page - 1)
+              .addClass("onPage");
+          }
+          if (newData.length > 0) {
+            updateData(newData, 20, page || 1);
+            paginationDomSwitch(page, totalPage);
+            dataCountSwitch(newData, page || 1);
+          } else {
+            updateData(data, perPage, page);
+            paginationDomSwitch(page, totalPage);
+            dataCountSwitch(data, page);
+          }
+        });
+        $(".next-page").on("click", (e) => {
+          e.preventDefault();
+
+          if (page < totalPage) {
+            page = page + 1;
+            $(".page").removeClass("onPage");
+            $(".page")
+              .eq(page - 1)
+              .addClass("onPage");
+          }
+
+          if (newData.length > 0) {
+            updateData(newData, 20, page || 1);
+            paginationDomSwitch(page, totalPage);
+            dataCountSwitch(newData, page || 1);
+          } else {
+            updateData(data, perPage, page);
+            paginationDomSwitch(page, totalPage);
+            dataCountSwitch(data, page);
+          }
+        });
+      });
+    </script>
+    <script src="map.js"></script>
+  </body>
+</html>
