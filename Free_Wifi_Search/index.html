@@ -12,7 +12,6 @@
       async
       defer
     ></script>
-    <!-- <script src="https://cdn.jsdelivr.net/gmap3/7.2.0/gmap3.min.js"></script> -->
   </head>
   <body>
     <main>
@@ -36,10 +35,23 @@
           <option value="">請選擇</option>
         </select>
         <form>
-          <input class="name" type="radio" name="radio" value="name" />
-          <label for="">依地名搜尋</label>
-          <input class="address" type="radio" name="radio" value="address" />
-          <label for="">依地址搜尋</label>
+          <label for=""
+            ><input
+              class="name"
+              type="radio"
+              name="radio"
+              value="name"
+            />依地名搜尋</label
+          >
+
+          <label for=""
+            ><input
+              class="address"
+              type="radio"
+              name="radio"
+              value="address"
+            />依地址搜尋</label
+          >
 
           <input class="search-input" type="text" placeholder="搜尋..." />
 
@@ -77,10 +89,10 @@
       $(() => {
         //待開發:按地址或地點搜尋用input radio、串接地圖api
 
-        var $searchInput = $(".search-input");
-        var $countySelector = $(".county-selector");
-        var $districtSelector = $(".district-selector");
-        var searchBtn = $(".query");
+        $searchInput = $(".search-input");
+        $countySelector = $(".county-selector");
+        $districtSelector = $(".district-selector");
+        $searchBtn = $(".query");
         var localStorage = window.localStorage;
 
         var api = "https://www.gsp.gov.tw/iTaiwan/itw_tw.json";
