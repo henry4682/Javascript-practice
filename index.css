@@ -1,0 +1,37 @@
+body {
+  background-color: cadetblue;
+  font-family: Arial, Helvetica, sans-serif;
+  display: grid;
+  grid-template-areas: "header header header header header header" "aside main main main main main" "aside main main main main main";
+  gap: 10px;
+}
+body header {
+  grid-area: header;
+  text-align: center;
+}
+body aside {
+  grid-area: aside;
+  background-color: antiquewhite;
+}
+body aside ul {
+  list-style: none;
+}
+body aside ul li {
+  padding: 5px 15px;
+}
+body aside ul li.home-page {
+  padding: 5px 0px;
+}
+body aside ul li:hover {
+  background-color: aqua;
+}
+body aside ul li a {
+  color: #333;
+  text-decoration: none;
+}
+body main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}/*# sourceMappingURL=index.css.map */
