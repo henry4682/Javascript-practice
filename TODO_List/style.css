@@ -1,56 +1,79 @@
-* {
+body {
+  display: grid;
+  grid-template-areas: "header header header header header header" "aside main main main main main" "aside main main main main main";
   font-family: Arial, Helvetica, sans-serif;
 }
-
-main {
-  width: 900px;
-  height: 500px;
-  margin: 0px auto;
+body header {
+  grid-area: header;
+  text-align: center;
+  background-color: burlywood;
+}
+body aside.menu {
+  grid-area: aside;
+  background-color: antiquewhite;
+  height: calc(100vh - 80px - 8px);
+}
+body aside.menu ul {
+  list-style: none;
+}
+body aside.menu ul li {
+  padding: 5px 15px;
+}
+body aside.menu ul li.home-page {
+  padding: 5px 0px;
+}
+body aside.menu ul li:hover {
+  background-color: aqua;
+}
+body aside.menu ul li a {
+  color: #333;
+  text-decoration: none;
+}
+body main {
+  grid-area: main;
+  background-color: bisque;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 }
-main h1 {
+body main h1 {
   text-align: center;
   font-size: 3rem;
 }
-main section.form {
-  height: 25px;
+body main section.form {
   margin: 25px auto;
 }
-main section.form input {
+body main section.form input {
   font-size: 1.6rem;
   line-height: 3rem;
 }
-main section.form button {
+body main section.form button {
   font-size: 1.6rem;
   line-height: 3rem;
 }
-main section.list ol {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
+body main section.list {
   width: 100%;
+}
+body main section.list table {
+  text-align: center;
+  width: 100%;
+}
+body main section.list table thead {
+  width: 50%;
+}
+body main section.list table .list-table {
+  padding: 0px;
   margin: 10px auto;
-  list-style: decimal;
-  font-size: 2rem;
+  font-size: 1.6rem;
   line-height: 3rem;
 }
-main section.list ol li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  line-height: 1.6rem;
-}
-main section.list ol li input {
+body main section.list table .list-table tr td input {
   font-size: 1.6rem;
-  height: 3rem;
+  line-height: 3rem;
 }
-main section.list ol li button {
+body main section.list table .list-table tr td button {
   font-size: 1.6rem;
-  height: 70%;
+  line-height: 3rem;
 }/*# sourceMappingURL=style.css.map */

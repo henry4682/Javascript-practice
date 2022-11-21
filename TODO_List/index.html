@@ -9,21 +9,57 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
+    <header>
+        <h1>Javascript & jQuery Practice</h1>
+    </header>
+    <aside class="menu">
+        <ul>
+          <li class="home-page">
+              <a href="https://henry4682.github.io/Javascript-practice/">首頁</a>
+          </li>
+          <li>
+            <a
+              href="https://henry4682.github.io/Javascript-practice/BMI_calculator/"
+              >BMI calculator</a
+            >
+          </li>
+          <li>
+            <a href="https://henry4682.github.io/Javascript-practice/Calculator/"
+              >Calculator</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://henry4682.github.io/Javascript-practice/Free_Wifi_Search/"
+              >Free Wifi Search</a
+            >
+          </li>
+          <li>
+            <a href="https://henry4682.github.io/Javascript-practice/TODO_List/"
+              >TODO list</a
+            >
+          </li>
+        </ul>
+    </aside>
     <main>
         <h1>TODO List</h1>
         <section class="form">
             <table>
                 <thead>
                     <th>TODO</th>
-                    <th>deadline</th>
+                    <th>start date</th>
+                    <th>end date</th>
                     <th></th>
                 </thead>
                 <tbody>
                     <td>
-                        <input class="addInput" type="text">
+                        <input class="addInput" placeholder="Anything TODO..." type="text">
                     </td>
                     <td>
-                        <input class="addDate" type="date">
+                        <input class="startDate"  type="date" >
+                    </td>
+                    <td>
+                        <input class="endDate" type="date">
                     </td>
                     <td>
                         <button class="addBtn">送出</button>
@@ -33,6 +69,15 @@
         </section>
         <section class="list">
             <table>
+                <thead>
+                    <tr>
+                       <th>待辦事項</th>
+                       <th>開始日期</th>
+                       <th>截止日期</th>
+                       <th>修改</th>
+                       <th>刪除</th>
+                    </tr>
+                </thead>
                 <tbody class="list-table">
                 </tbody>
             </table>
@@ -41,27 +86,88 @@
     <script>
         $(document).ready(function() {
             $addInput = $('.addInput')
-            $addDate = $('.addDate')
+            $startDate = $('.startDate')
+            $endDate = $('.endDate')
             $addBtn = $('.addBtn')
+
+            // 建立一個當地時間物件 字串形式為(YYYY-MM-DD)
+            nowDate = new Date().toLocaleDateString('en-CA')
+            // 初始化 startDate 跟 endDate 的值 與其min屬性的值
+            $startDate.val(nowDate)
+            $endDate.val(nowDate)
+            $startDate.attr('min', nowDate);
+            $endDate.attr('min', nowDate);
     
-            // 新增按鈕事件
+            // 開始日期input
+            $startDate.on('change', (e) => {
+                // 當確定 startDate 的值 endDate 的 min 屬性值也會跟著變化
+                let getStartDate = e.target.value
+                $endDate.attr('min',getStartDate)
+            })
+
+            // 修改完成按鈕
+            $('.list-table').on('click', '.fix-done', (e) => {
+                // 按鈕本身的字和class更改
+                $(e.target).text('修改')
+                $(e.target).attr('class','fix')
+
+                // 記下已經修改好的資訊
+                let fixText = $(e.target).parent().parent().find('.fix-text').val()
+                let fixStartDate = $(e.target).parent().parent().find('.fix-startDate').val()
+                let fixEndDate = $(e.target).parent().parent().find('.fix-endDate').val()
+                // 移除修改欄位
+                $(e.target).parent().prevAll().remove()
+                // 將之前的dom加回來
+                $(e.target).parent().before(`
+                <td><p class="todoText">${fixText}</p></td>
+                <td><p class="startDateText">${fixStartDate}</p></td>
+                <td><p class="endDateText">${fixEndDate}</p></td>
+                `)
+            })
+            // 修改按鈕
+            $('.list-table').on('click','.fix',(e) => {
+                // 按鈕本身的字和class更改
+                $(e.target).text('修改完成')
+                $(e.target).attr('class','fix-done')
+                // 記下欄位資訊
+                let todoText = $(e.target).parent().parent().find('.todoText').text()
+                let startDateText = $(e.target).parent().parent().find('.startDateText').text()
+                let endDateText = $(e.target).parent().parent().find('.endDateText').text()
+                // 移除在按鈕前的dom
+                $(e.target).parent().prevAll().remove()
+                // 在按鈕前加入修改欄位
+                $(e.target).parent().before(`
+                <td><input class="fix-text" type="text" value='${todoText}' ></input></td>
+                <td><input class="fix-startDate" type="date" value='${startDateText}'></input></td>
+                <td><input class="fix-endDate" type="date" value='${endDateText}'></input></td>
+                `)
+                
+            })
+
+            //刪除按鈕
+            $('.list-table').on('click','.delete',(e) => {
+                $(e.target).parent().parent().remove();
+            })
+
+            // 新增按鈕
             $addBtn.on('click', (e) =>{
                 if($addInput.val() !== '' ) {
                     var $newList = $(`
                     <tr id="${$addInput.val()}">
-                        <td><p>${$addInput.val()}</p> </td>
-                        <td><p>截止日期:${$addDate.val()}</p></td>
-                        <td class="delete"><button>刪除</button></td>
+                        <td><p class="todoText">${$addInput.val()}</p> </td>
+                        <td><p class="startDateText">${$startDate.val()}</p></td>
+                        <td><p class="endDateText">${$endDate.val()}</p></td>
+                        <td><button class="fix">修改</button></td>
+                        <td><button class="delete">刪除</button></td>
                     </tr>`)
                     
                     $('.list-table').append($newList)
-                    //刪除按鈕事件
-                    $('tr').on('click','.delete button',function(e) {
-                        $(this).parent().parent().remove();
-                    })
+                    
+                    
                     // 清空欄位
                     $addInput.val('')
-                    $addDate.val('')
+                    $startDate.val(new Date().toLocaleDateString('en-CA'))
+                    $endDate.val(new Date().toLocaleDateString('en-CA'))
                 }
             })
         })

@@ -1,58 +1,91 @@
-*{
+body{
+    display: grid;
+    grid-template-areas: 
+    'header header header header header header'
+    'aside main main main main main'
+    'aside main main main main main';
     font-family: Arial, Helvetica, sans-serif;
-}
-main{
-    width: 900px;
-    height: 500px;
-    margin: 0px auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    gap:20px;
-    h1{
+    header{
+        grid-area: header;
         text-align: center;
-        font-size: 3rem;
+        background-color:burlywood;
     }
-    section.form{
-        height: 25px;
-        margin: 25px auto;
-        input{
-            font-size: 1.6rem;
-            line-height: 3rem;
-        }
-        button{
-            font-size: 1.6rem;
-            line-height: 3rem;
-        }
-    }
-    section.list{
-        ol{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 0px;
-            width: 100%;
-            margin: 10px auto;
-            list-style:decimal;
-            font-size: 2rem;
-            line-height: 3rem;
+    aside.menu{
+        grid-area: aside;
+        background-color: antiquewhite;
+        height: calc(100vh - 80px - 8px)  ;
+        ul{
+            list-style: none;
             li{
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                line-height: 1.6rem;
-                input{
-                    
-                    font-size: 1.6rem;
-                    height: 3rem;
+                padding: 5px 15px;
+                &.home-page {
+                    padding: 5px 0px;
                 }
-                button{
-                    font-size: 1.6rem;
-                    height: 70%;
+                &:hover{
+                       
+                    background-color: aqua;
+                }
+                a{
+                    color: #333;
+                    text-decoration: none;
                 }
             }
+        }
+    }
+
+    main{
+        grid-area: main;
+        background-color: bisque;
+        display: flex;
+        justify-content: start;
+        flex-direction: column;
+        align-items: center;
+        gap:20px;
+        h1{
+            text-align: center;
+            font-size: 3rem;
+        }
+        section.form{
+            margin: 25px auto;
+            input{
+                font-size: 1.6rem;
+                line-height: 3rem;
+            }
+            button{
+                font-size: 1.6rem;
+                line-height: 3rem;
+            }
+        }
+        section.list{
+            width: 100%;
+            table{
+                text-align: center;
+                width: 100%;
+            
+                thead{
+                    width: 50%;
+                }
+                .list-table{
+                    
+                    padding: 0px;
+                    margin: 10px auto;
+                    font-size: 1.6rem;
+                    line-height: 3rem;
+                tr{
+                    td{
+                        input{
+                            font-size: 1.6rem;
+                            line-height: 3rem;
+                        }
+                        button{
+                            font-size: 1.6rem;
+                            line-height: 3rem;
+                        }
+                    }
+                }
+                    
+                }
+        }
         }
     }
 }
