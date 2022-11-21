@@ -1,52 +1,92 @@
-main{
-    width: 900px;
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    .container{
-        .display{
-            padding-left: 3px;
-            height: 3rem;
-            font-size: 1.8rem;
-            line-height: 3rem;
-            border: 1px solid #333;
-            border-radius: 5px;
-            margin-bottom: 5px;
-            width: 204px;
-        }
-        section{
-            aside.cal{
-            width: 240px;
-            display: flex;
-            flex-direction: column;
-            margin: 0 auto;
-            gap: 3px;
-                .row{
-                    display: flex;
-                    justify-content:left;
-                    gap: 3px;
-                    button{
-                        width: 50px;
-                        height: 50px;
-                        font-size: 1.6rem;
-                        border-radius: 5px;
-                        text-align: center;
-                        &:hover,:active{
-                            cursor: pointer;
-                        }
-                    }
-                    
+
+body{
+    display: grid;
+    grid-template-areas: 
+    'header header header header header header'
+    'aside main main main main main'
+    'aside main main main main main';
+    font-family: Arial, Helvetica, sans-serif;
+    header{
+        grid-area: header;
+        text-align: center;
+        background-color:burlywood;
+    }
+    aside.menu{
+        grid-area: aside;
+        background-color: antiquewhite;
+        height: calc(100vh - 80px - 8px)  ;
+        ul{
+            list-style: none;
+            li{
+                padding: 5px 15px;
+                &.home-page {
+                    padding: 5px 0px;
                 }
-            }
-            aside.process{
-                display: none;
+                &:hover{
+                       
+                    background-color: aqua;
+                }
+                a{
+                    color: #333;
+                    text-decoration: none;
+                }
             }
         }
     }
-    .list{
-        width: 300px;
-        background-color: aquamarine;
-        margin: 0 10px;
-        padding: 0 20px;
+    
+
+    main{
+        grid-area: main;
+        background-color: bisque;
+        display:inline-flex;
+        justify-content: center;
+        padding: 10px 0 10px 0;
+        .container{
+            width: 40%;
+            .display{
+                padding-left: 3px;
+                height: 3rem;
+                font-size: 1.8rem;
+                line-height: 3rem;
+                border: 1px solid #333;
+                border-radius: 5px;
+                margin-bottom: 5px;
+                width: 204px;
+            }
+            section{
+                aside.cal{
+                width: 240px;
+                display: flex;
+                flex-direction: column;
+                // margin: 0 auto;
+                gap: 3px;
+                    .row{
+                        display: flex;
+                        justify-content:left;
+                        gap: 3px;
+                        button{
+                            width: 50px;
+                            height: 50px;
+                            font-size: 1.6rem;
+                            border-radius: 5px;
+                            text-align: center;
+                            &:hover,:active{
+                                cursor: pointer;
+                            }
+                        }
+                        
+                    }
+                }
+                aside.process{
+                    display: none;
+                }
+            }
+        }
+        .list{
+            width: 30%;
+            background-color: aquamarine;
+            margin: 0 10px;
+            padding: 0 20px;
+        }
     }
 }

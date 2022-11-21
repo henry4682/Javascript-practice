@@ -3,18 +3,20 @@ $normal:rgb(27, 226, 23);
 $heavy:orange;
 $fat:red;
 $grey:#666;
+
 body{
-    background-color:cadetblue;
+    
     font-family: Arial, Helvetica, sans-serif;
     display: grid;
     grid-template-areas:
     'header header header header header header'
     'aside main main main main main'
     'aside main main main main main';
-    gap: 10px;
+    
     header{
         grid-area: header;
         text-align: center;
+        background-color:burlywood;
     }
    
     aside{
@@ -38,6 +40,7 @@ body{
         }
     }
     main{
+        background-color: bisque;
         grid-area: main;
         display: flex;
         flex-direction: column;

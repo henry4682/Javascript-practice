@@ -1,67 +1,97 @@
-* {
+body {
+  display: grid;
+  grid-template-areas: "header header header header header header" "aside main main main main main" "aside main main main main main";
   font-family: Arial, Helvetica, sans-serif;
 }
-
-main {
+body header {
+  grid-area: header;
+  text-align: center;
+  background-color: burlywood;
+}
+body aside.menu {
+  grid-area: aside;
+  background-color: antiquewhite;
+}
+body aside.menu ul {
+  list-style: none;
+}
+body aside.menu ul li {
+  padding: 5px 15px;
+}
+body aside.menu ul li.home-page {
+  padding: 5px 0px;
+}
+body aside.menu ul li:hover {
+  background-color: aqua;
+}
+body aside.menu ul li a {
+  color: #333;
+  text-decoration: none;
+}
+body main {
+  grid-area: main;
+  background-color: bisque;
   width: 100%;
   margin: 0 auto;
   text-align: center;
 }
-main .form {
+body main .form {
   padding: 0 20px 20px 20px;
 }
-main .container {
+body main .container {
   display: flex;
 }
-main .container section {
+body main .container section {
+  margin-left: 20px;
   width: 50%;
 }
-main .container section .data-info {
+body main .container section .data-info {
   display: flex;
   -moz-text-align-last: left;
        text-align-last: left;
 }
-main .container section table {
+body main .container section table {
   width: 100%;
   margin: 0 auto;
   border: 3px solid #333;
   border-collapse: collapse;
+  background-color: aliceblue;
 }
-main .container section table tr {
+body main .container section table tr {
   -moz-text-align-last: left;
        text-align-last: left;
 }
-main .container section table tr:hover {
+body main .container section table tr:hover {
   background-color: #999;
 }
-main .container section table tr th, main .container section table tr td {
+body main .container section table tr th, body main .container section table tr td {
   border: 1px solid #777;
 }
-main .container section nav {
-  padding-top: 20px;
+body main .container section nav {
+  padding: 20px 0 20px 0;
   display: flex;
   justify-content: center;
 }
-main .container section nav button {
+body main .container section nav button {
   border: none;
   font-size: 1.2rem;
 }
-main .container section nav button.prev-page {
+body main .container section nav button.prev-page {
   border-radius: 25% 0 0 25%;
 }
-main .container section nav button.next-page {
+body main .container section nav button.next-page {
   border-radius: 0 25% 25% 0;
 }
-main .container section nav button:hover, main .container section nav button :active {
+body main .container section nav button:hover, body main .container section nav button :active {
   cursor: pointer;
   border: 1px solid #333;
   box-shadow: 3px 3px #333;
 }
-main .container section nav button.onPage {
+body main .container section nav button.onPage {
   background-color: aquamarine;
 }
-main .container #map {
-  border: 1px solid red;
-  width: 50%;
-  height: 600px;
+body main .container #map {
+  margin: 20px auto;
+  width: 40%;
+  height: 400px;
 }/*# sourceMappingURL=style.css.map */

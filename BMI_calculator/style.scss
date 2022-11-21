@@ -3,18 +3,14 @@ $normal:rgb(27, 226, 23);
 $heavy:orange;
 $fat:red;
 $grey:#666;
-*{
-    // border:1px solid red;
-    // margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-}
+
 body{
     display: grid;
     grid-template-areas: 
     'header header header header header header'
     'aside main main main main main'
     'aside main main main main main';
-    
+    font-family: Arial, Helvetica, sans-serif;
     header{
         grid-area: header;
         text-align: center;

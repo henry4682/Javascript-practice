@@ -1,70 +1,105 @@
-*{
-    font-family: Arial, Helvetica, sans-serif;
-}
 
-main{
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-    .form{
-        padding:0 20px 20px 20px;
+body{
+    display: grid;
+    grid-template-areas: 
+    'header header header header header header'
+    'aside main main main main main'
+    'aside main main main main main';
+    font-family: Arial, Helvetica, sans-serif;
+    header{
+        grid-area: header;
+        text-align: center;
+        background-color:burlywood;
     }
-    .container{
-        display: flex;
-        section{
-            width: 50%;
-            .data-info{
-                display: flex;
-                text-align-last: left;
+    aside.menu{
+        grid-area: aside;
+        background-color: antiquewhite;
+        ul{
+            list-style: none;
+            li{
+                padding: 5px 15px;
+                &.home-page {
+                    padding: 5px 0px;
+                }
+                &:hover{
+                       
+                    background-color: aqua;
+                }
+                a{
+                    color: #333;
+                    text-decoration: none;
+                }
             }
-            table{
-                width: 100%;
-                margin: 0 auto;
-                border: 3px solid #333;
-                border-collapse: collapse;
-                tr{
+        }
+    }
+    
+
+    main{
+        grid-area: main;
+        background-color: bisque;
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        .form{
+            padding:0 20px 20px 20px;
+        }
+        .container{
+            display: flex;
+            section{
+                margin-left: 20px;
+                width: 50%;
+                .data-info{
+                    display: flex;
                     text-align-last: left;
-                    &:hover{
-                        background-color: #999;
+                }
+                table{
+                    width: 100%;
+                    margin: 0 auto;
+                    border: 3px solid #333;
+                    border-collapse: collapse;
+                    background-color: aliceblue;
+                    tr{
+                        text-align-last: left;
+                        &:hover{
+                            background-color: #999;
+                        }
+                        th,td{
+                            border: 1px solid #777;
+                        }
                     }
-                    th,td{
-                        border: 1px solid #777;
+                }
+                nav{
+                    padding: 20px 0 20px 0;
+                    display: flex;
+                    justify-content: center;
+                    
+                    button{
+                        border: none;
+                        font-size: 1.2rem;
+                        &.prev-page{
+                            border-radius: 25% 0 0 25%;
+                        }
+                        &.next-page{
+                            border-radius:0 25% 25% 0;
+                        }
+                        &:hover,:active{
+                            cursor: pointer;
+                            border: 1px solid #333;
+                            box-shadow: 3px 3px #333;
+                            
+                        }
+                        &.onPage{
+                            background-color: aquamarine;
+                        }
                     }
                 }
             }
-            nav{
-                padding-top: 20px;
-                display: flex;
-                justify-content: center;
-                
-                button{
-                    border: none;
-                    font-size: 1.2rem;
-                    &.prev-page{
-                        border-radius: 25% 0 0 25%;
-                    }
-                    &.next-page{
-                        border-radius:0 25% 25% 0;
-                    }
-                    &:hover,:active{
-                        cursor: pointer;
-                        border: 1px solid #333;
-                        box-shadow: 3px 3px #333;
-                        
-                    }
-                    &.onPage{
-                        background-color: aquamarine;
-                    }
-                }
+            #map {
+                margin: 20px auto;
+                width: 40%;
+                height: 400px;
             }
         }
-        #map {
-            border: 1px solid red;
-            width: 50%;
-            height: 600px;
-        }
+
     }
-   
-    
-    
 }
