@@ -14,10 +14,11 @@ body{
     'header header header header header header'
     'aside main main main main main'
     'aside main main main main main';
-    background-color:cadetblue;
+    
     header{
         grid-area: header;
         text-align: center;
+        background-color:burlywood;
     }
     aside.menu{
         grid-area: aside;
@@ -43,14 +44,12 @@ body{
     }
     
     main {
+        background-color: bisque;
         grid-area: main;
-        // width: 800px;
-        margin: 20px auto;
         display: flex;
-        gap: 10px;
-
+        justify-content: center;
         aside{
-            width: 50%;
+            width: 40%;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -71,6 +70,7 @@ body{
                 }
                 h4.result{
                     display: block;
+                    background-color: #999;
                 }
                 button{
                     background: #fff;
@@ -84,6 +84,8 @@ body{
             }
 
             ul{
+                display: flex;
+                flex-direction: column;
                 height: 100%;
                 list-style: none;
                 li{

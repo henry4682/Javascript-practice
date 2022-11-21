@@ -5,11 +5,11 @@
 body {
   display: grid;
   grid-template-areas: "header header header header header header" "aside main main main main main" "aside main main main main main";
-  background-color: cadetblue;
 }
 body header {
   grid-area: header;
   text-align: center;
+  background-color: burlywood;
 }
 body aside.menu {
   grid-area: aside;
@@ -33,13 +33,13 @@ body aside.menu ul li a {
   text-decoration: none;
 }
 body main {
+  background-color: bisque;
   grid-area: main;
-  margin: 20px auto;
   display: flex;
-  gap: 10px;
+  justify-content: center;
 }
 body main aside {
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -60,6 +60,7 @@ body main aside span h4.helping {
 }
 body main aside span h4.result {
   display: block;
+  background-color: #999;
 }
 body main aside span button {
   background: #fff;
@@ -71,6 +72,8 @@ body main aside span button:active, body main aside span button:hover {
   cursor: pointer;
 }
 body main aside ul {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   list-style: none;
 }
