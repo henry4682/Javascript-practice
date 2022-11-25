@@ -1,4 +1,5 @@
 body {
+  margin: 0;
   display: grid;
   grid-template-areas: "header header header header header header" "aside main main main main main" "aside main main main main main";
   font-family: Arial, Helvetica, sans-serif;
