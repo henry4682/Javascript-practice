@@ -72,11 +72,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <!-- 動態新增 -->
-                        <td class="total" >總計:<p >0</p>元</td> 
-                    </tr>
+                    <!-- 動態新增 -->
+                    
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">總計:</td> 
+                        <td class="total" ><span>0</span>元</td> 
+                        <td></td> 
+                    </tr>
+                </tfoot>
             </table>
         </section>
     </main>
@@ -135,7 +140,7 @@
                 </tr>`)
                 
                 total += +$itemPrice
-                $('.cart-table tbody td.total p').text(total)
+                $('.cart-table tfoot td.total span').text(total)
             })
             // 增加或減少商品數量按鈕
             $('.cart-table').on('click','.addAmount, .subAmount',(e) => {
@@ -168,14 +173,14 @@
                     let singleSub = Number($(this).children().eq(4).text());
                     total += singleSub;
                 })
-                $('.cart-table tbody td.total p').text(total);
+                $('.cart-table tfoot td.total span').text(total);
             }
 
             // 購物車刪除按鈕
             $('.cart-table tbody').on('click','td button.deleteBtn',(e) => {
                 let subtotal = Number($(e.target).parent().siblings('td:eq(4)').text())
                 total -= subtotal
-                $('.cart-table tbody td.total p').text(total)
+                $('.cart-table tfoot td.total span').text(total)
                 $(e.target).parent().parent().remove()
             })
         })

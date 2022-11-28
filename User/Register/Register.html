@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="Register.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js' integrity='sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==' crossorigin='anonymous'></script>
+</head>
+<body>
+    <header>
+        <h1>Javascript & jQuery Practice</h1>
+    </header>
+    <aside class="menu">
+        <ul>
+          <li class="home-page">
+              <a href="https://henry4682.github.io/Javascript-practice/">首頁</a>
+          </li>
+          <li>
+            <a
+              href="https://henry4682.github.io/Javascript-practice/BMI_calculator/"
+              >BMI calculator</a
+            >
+          </li>
+          <li>
+            <a href="https://henry4682.github.io/Javascript-practice/Calculator/"
+              >Calculator</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://henry4682.github.io/Javascript-practice/Free_Wifi_Search/"
+              >Free Wifi Search</a
+            >
+          </li>
+          <li>
+            <a href="https://henry4682.github.io/Javascript-practice/TODO_List/"
+              >TODO list</a
+          </li>
+          <li>
+            <button class="toggle">User</button>
+            <ul class="userList">
+              <li><a href="https://henry4682.github.io/Javascript-practice/User/Register/">Register</a> </li>
+              <li><a href="https://henry4682.github.io/Javascript-practice/User/LogIn/">Log-in</a> </li>
+              <li><a href="https://henry4682.github.io/Javascript-practice/User/Products&cart/">Products&cart</a> </li>
+            </ul>
+          </li>
+        </ul>
+    </aside>
+    <main>
+      <h2>會員註冊</h2>
+      <div class="register-card">
+        <label for="">會員名稱:</label><input id="name" type="text">
+        <label for="">會員帳號:</label><input id="account" type="text">
+        <label for="">會員密碼:</label><input id="password" type="password">
+        <label for="">密碼確認:</label><input id="recheckPW" type="password">
+        <button type="button" >送出</button>
+      </div>
+    </main>
+    <script>
+        $(function(){
+
+            $('button').on('click',(e) => {
+                var $nameVal = $('input').eq(0)
+                var $accountVal = $('input').eq(1)
+                var $passwordVal = $('input').eq(2)
+                var $recheckPWVal = $('input').eq(3)
+                e.preventDefault();
+                let newUser = {
+                    name : $nameVal.val(),
+                    account : $accountVal.val(),
+                    password : $passwordVal.val(),
+                    createTme : new Date(),
+                }
+                
+                $('input').each(function(i){
+                    if($(this).val() === ''){
+                    if($('label').eq(i).children().is('span')) return;
+                    $('label').eq(i).append(`<span style='color:red'>請勿填空</span>`)
+                    return;
+                    }else{
+                        $('label').eq(i).find('span').remove()
+                    }
+
+                    
+                })
+                
+                if($recheckPWVal.val() !== '' && $recheckPWVal.val() !== $passwordVal.val()){
+                    if($('label').eq(3).children().is('span')) return;
+                    $('label').eq(3).append(`<span style='color:red'>密碼不一致</span>`)
+                    return;
+                }
+                console.log(newUser)
+            })
+            $('.toggle').on('click',() => {
+              $('ul.userList').toggleClass('show')
+            })
+        })
+    </script>
+</body>
+</html>

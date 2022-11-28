@@ -36,41 +36,34 @@ body{
     main{
         grid-area: main;
         background-color: bisque;
-        display: flex;
-        justify-content: space-evenly;
-        section.products{
-            table{
-                border: 3px solid #333;
-                border-collapse: collapse;
-                th,td{
-                    border: 1px solid #333;
-                }
-            }
+        h2{
+            text-align: center;
         }
-        section.cart{
-            table{
-                border: 3px solid #333;
-                border-collapse: collapse;
-                th,td{
-                    border: 1px solid #333;
+        .log-in-card{
+            width: 20%;
+            min-height: 200px;
+            background-color: rgb(255, 174, 144);
+            border-radius: 25px;
+            margin: 10px auto;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            // align-content: space-around;
+            button{
+                background-color: red;
+                color: #fff;
+                border: 0px solid transparent;
+                border-radius: 25px;
+                padding: 5px 15px;
+                &:hover{
+                    box-shadow: 1px 1px #333;
+                    cursor: pointer;
                 }
-                tbody{
-                    td.amount{
-                        display: flex;
-                        align-items: center;
-                        input{
-                            width: 30px;
-                            text-align: center;
-                        }
-                    }
-                    td.subTotal{
-                        text-align: right;
-                    }
-                }
-                tfoot{
-                    :nth-child(1){
-                        text-align: right;
-                    }
+                a{
+                    text-decoration: none;
+                    color: #fff;
                 }
             }
         }

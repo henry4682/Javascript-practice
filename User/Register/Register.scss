@@ -1,0 +1,71 @@
+body{
+    margin: 0;
+    display: grid;
+    grid-template-areas: 
+    'header header header header header header'
+    'aside main main main main main'
+    'aside main main main main main';
+    font-family: Arial, Helvetica, sans-serif;
+    header{
+        grid-area: header;
+        text-align: center;
+        background-color:burlywood;
+    }
+    aside.menu{
+        grid-area: aside;
+        background-color: antiquewhite;
+        height: calc(100vh - 80px - 8px)  ;
+        ul{
+            list-style: none;
+            li{
+                padding: 5px 15px 0 0;
+                &.home-page {
+                    padding: 5px 0px;
+                }
+                &:hover{
+                       
+                    background-color: aqua;
+                }
+                a{
+                    color: #333;
+                    text-decoration: none;
+                }
+                button.toggle{
+                    background: transparent;
+                    border: 0px solid transparent;
+                    font-size: 16px;
+                    padding: 0;
+                }
+                ul.userList{
+                    padding-left: 20px;
+                    display: none;
+                    
+                }
+                ul.userList.show{
+                    display: block;
+                    li{
+                        padding: 0;
+                    }
+                }
+
+            }
+            
+        }
+    }
+    main{
+        grid-area: main;
+        background-color: bisque;
+        width: 100%;
+        h2{
+            text-align: center;
+        }
+        .register-card{
+            width: 30%;
+            margin: 10px auto;
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            gap:10px;
+        }
+    }
+}

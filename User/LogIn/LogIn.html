@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    <link rel="stylesheet" href="LogIn.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js' integrity='sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==' crossorigin='anonymous'></script>
+</head>
+<body>
+    <header>
+        <h1>Javascript & jQuery Practice</h1>
+    </header>
+    <aside class="menu">
+        <ul>
+          <li class="home-page">
+              <a href="https://henry4682.github.io/Javascript-practice/">首頁</a>
+          </li>
+          <li>
+            <a
+              href="https://henry4682.github.io/Javascript-practice/BMI_calculator/"
+              >BMI calculator</a
+            >
+          </li>
+          <li>
+            <a href="https://henry4682.github.io/Javascript-practice/Calculator/"
+              >Calculator</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://henry4682.github.io/Javascript-practice/Free_Wifi_Search/"
+              >Free Wifi Search</a
+            >
+          </li>
+          <li>
+            <a href="https://henry4682.github.io/Javascript-practice/TODO_List/"
+              >TODO list</a
+            >
+          </li>
+        </ul>
+    </aside>
+    <main>
+      <h2>會員登入</h2>
+        <div class="log-in-card">
+            <label for="">帳號：<input id="account" type="text"></label>
+            <label for="">密碼：<input id="password" type="password"></label>
+            <button class="log-in-btn" type="button">登入</button><button><a href="../Register/Register.html">註冊</a></button>
+        </div>
+    </main>
+    <script>
+        $(function(){
+            let oldUser = {
+                account : 'apple',
+                password : '12345', 
+            }
+            $('.log-in-btn').on('click',() => {
+                $account = $('#account').val()
+                $password = $('#password').val()
+
+                $('input').each(function(){
+
+                    if($(this).val() === ''){
+                        if($(this).next().is('p'))return;
+                        $(this).after(`<p style='color:red'>請勿空白</p>`)
+                        return;
+                    }else{
+                        $('label').find('p').remove()
+                    }
+
+                    if(($(this).is('#account') && $(this).val() !== oldUser.account )|| ($(this).is('#password') && $(this).val() !== oldUser.password)){
+                        
+                        if($(this).next().is('p'))return;
+                        $(this).after(`<p style='color:red'>帳號或密碼不相符</p>`)
+                        return;
+                    }else{
+                        $(this).next().remove()
+                    }
+                    
+                })
+                
+            })
+        })
+    </script>
+</body>
+</html>

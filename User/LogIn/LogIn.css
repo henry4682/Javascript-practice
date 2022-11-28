@@ -33,34 +33,34 @@ body aside.menu ul li a {
 body main {
   grid-area: main;
   background-color: bisque;
-  display: flex;
-  justify-content: space-evenly;
 }
-body main section.products table {
-  border: 3px solid #333;
-  border-collapse: collapse;
-}
-body main section.products table th, body main section.products table td {
-  border: 1px solid #333;
-}
-body main section.cart table {
-  border: 3px solid #333;
-  border-collapse: collapse;
-}
-body main section.cart table th, body main section.cart table td {
-  border: 1px solid #333;
-}
-body main section.cart table tbody td.amount {
-  display: flex;
-  align-items: center;
-}
-body main section.cart table tbody td.amount input {
-  width: 30px;
+body main h2 {
   text-align: center;
 }
-body main section.cart table tbody td.subTotal {
-  text-align: right;
+body main .log-in-card {
+  width: 20%;
+  min-height: 200px;
+  background-color: rgb(255, 174, 144);
+  border-radius: 25px;
+  margin: 10px auto;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
 }
-body main section.cart table tfoot :nth-child(1) {
-  text-align: right;
-}/*# sourceMappingURL=Products&cart.css.map */
+body main .log-in-card button {
+  background-color: red;
+  color: #fff;
+  border: 0px solid transparent;
+  border-radius: 25px;
+  padding: 5px 15px;
+}
+body main .log-in-card button:hover {
+  box-shadow: 1px 1px #333;
+  cursor: pointer;
+}
+body main .log-in-card button a {
+  text-decoration: none;
+  color: #fff;
+}/*# sourceMappingURL=LogIn.css.map */

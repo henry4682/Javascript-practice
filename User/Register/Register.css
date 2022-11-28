@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  display: grid;
+  grid-template-areas: "header header header header header header" "aside main main main main main" "aside main main main main main";
+  font-family: Arial, Helvetica, sans-serif;
+}
+body header {
+  grid-area: header;
+  text-align: center;
+  background-color: burlywood;
+}
+body aside.menu {
+  grid-area: aside;
+  background-color: antiquewhite;
+  height: calc(100vh - 80px - 8px);
+}
+body aside.menu ul {
+  list-style: none;
+}
+body aside.menu ul li {
+  padding: 5px 15px 0 0;
+}
+body aside.menu ul li.home-page {
+  padding: 5px 0px;
+}
+body aside.menu ul li:hover {
+  background-color: aqua;
+}
+body aside.menu ul li a {
+  color: #333;
+  text-decoration: none;
+}
+body aside.menu ul li button.toggle {
+  background: transparent;
+  border: 0px solid transparent;
+  font-size: 16px;
+  padding: 0;
+}
+body aside.menu ul li ul.userList {
+  padding-left: 20px;
+  display: none;
+}
+body aside.menu ul li ul.userList.show {
+  display: block;
+}
+body aside.menu ul li ul.userList.show li {
+  padding: 0;
+}
+body main {
+  grid-area: main;
+  background-color: bisque;
+  width: 100%;
+}
+body main h2 {
+  text-align: center;
+}
+body main .register-card {
+  width: 30%;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  gap: 10px;
+}/*# sourceMappingURL=Register.css.map */
