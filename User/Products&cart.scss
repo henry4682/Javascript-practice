@@ -50,6 +50,10 @@ body{
                     td.amount{
                         display: flex;
                         align-items: center;
+                        input{
+                            width: 30px;
+                            text-align: center;
+                        }
                     }
                     td.total{
                         width: 100%;

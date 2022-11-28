@@ -46,6 +46,10 @@ body main section.cart table tbody td.amount {
   display: flex;
   align-items: center;
 }
+body main section.cart table tbody td.amount input {
+  width: 30px;
+  text-align: center;
+}
 body main section.cart table tbody td.total {
   width: 100%;
   text-align: right;

@@ -73,6 +73,7 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <!-- 動態新增 -->
                         <td class="total" >總計:<p >0</p>元</td> 
                     </tr>
                 </tbody>
@@ -124,11 +125,11 @@
                 if(flag) return;
                 
                 $('.cart-table tbody').prepend(`
-                <tr>
+                <tr class='item'>
                     <td>${$itemNum}</td>
                     <td class='product-name'>${$itemName}</td> 
                     <td>${$itemPrice}</td> 
-                    <td class='amount'><button class='addAmount'>+</button><p>1</p><button class='subAmount'>-</button></td>
+                    <td class='amount'><button class='addAmount'>+</button><input type='number' value='1'min='1' /><button class='subAmount'>-</button></td>
                     <td class='subTotal'>${$itemPrice}</td>
                     <td><button class='deleteBtn'>刪除商品</button></td>    
                 </tr>`)
@@ -138,22 +139,38 @@
             })
             // 增加或減少商品數量按鈕
             $('.cart-table').on('click','.addAmount, .subAmount',(e) => {
-                let amount = Number($(e.target).siblings('p').text())
+                let amount = Number($(e.target).siblings('input').val())
                 let price = Number($(e.target).parent().siblings('td:eq(2)').text())
                 if($(e.target).is('.addAmount')){
-                    amount += 1
-                    total += price
+                    amount += 1;
                 }else{
                     if(amount <= 1)return
-                    amount -= 1
-                    total -= price
+                    amount -= 1;
                 }
                 
-                price *= amount
-                $(e.target).siblings('p').text(amount)
-                $(e.target).parent().siblings('td:eq(3)').text(price)
-                $('.cart-table tbody td.total p').text(total)
+                price *= amount;
+                $(e.target).siblings('input').val(amount);
+                $(e.target).parent().siblings('td:eq(3)').text(price);
+                addTotal(e);
             })
+
+            $('.cart-table').on('change','input',(e) => {
+                let amount = Number($(e.target).val());
+                if(amount <= 0) return
+                let price = Number($(e.target).parent().siblings('td:eq(2)').text());
+                let subtotal = amount * price;
+                $(e.target).parent().siblings('td:eq(3)').text(subtotal);
+                addTotal(e);
+            })
+            function addTotal(e){
+                total = 0
+                $(e.target).parent().parent().parent().children('tr.item').each(function(){
+                    let singleSub = Number($(this).children().eq(4).text());
+                    total += singleSub;
+                })
+                $('.cart-table tbody td.total p').text(total);
+            }
+
             // 購物車刪除按鈕
             $('.cart-table tbody').on('click','td button.deleteBtn',(e) => {
                 let subtotal = Number($(e.target).parent().siblings('td:eq(4)').text())
