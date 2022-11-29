@@ -16,10 +16,11 @@ $grey:#666;
             gap: 10px;
 
             span{
-                height: 100%;
-
-                h3{
-                margin: 5px 0; 
+                
+                p{
+                    width: 50%;
+                    margin: 5px 0; 
+                   
                 }
                 input{
                     width: 200px;
@@ -29,11 +30,14 @@ $grey:#666;
                 h4.helping{
                     color: #333;
                 }
-                h4.result{
-                    display: block;
-                    background-color: #999;
+                h3.result{
+                    width: 50%;
+                    display: inline;
+                    margin: 0;
+                    background-color: #fff;
                 }
                 button{
+                    padding: 5px 10px;
                     background: #fff;
                     border: 1px solid #333;
                     border-radius: 1000px;

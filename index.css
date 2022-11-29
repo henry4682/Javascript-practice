@@ -1,34 +1,4 @@
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  display: grid;
-  grid-template-areas: "header header header header header header" "aside main main main main main" "aside main main main main main";
-}
-body header {
-  grid-area: header;
-  text-align: center;
-  background-color: burlywood;
-}
-body aside {
-  grid-area: aside;
-  background-color: antiquewhite;
-}
-body aside ul {
-  list-style: none;
-}
-body aside ul li {
-  padding: 5px 15px;
-}
-body aside ul li.home-page {
-  padding: 5px 0px;
-}
-body aside ul li:hover {
-  background-color: aqua;
-}
-body aside ul li a {
-  color: #333;
-  text-decoration: none;
-}
-body main {
+main {
   background-color: bisque;
   grid-area: main;
   display: flex;

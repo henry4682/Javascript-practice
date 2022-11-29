@@ -27,7 +27,7 @@
             <button type="button" class="reset"> Reset </button>
         </span>
         <span>
-            <h3>BMI (kg/m^2) :<h4 class="result"></h4> </h3>
+            <h3>BMI (kg/m^2) :  </h3><h3 class="result"></h3>
         </span>
     </aside>
     <aside>
@@ -54,13 +54,12 @@
     
     <script>
         $(function() {
-            $.get('https://henry4682.github.io/Javascript-practice/components/',function(result){
+            $.get('https://henry4682.github.io/Javascript-practice/components/', function(result){
                 $(result).prependTo('body')
             })
             
             $('body').on('click','.toggle',() => {
                 $('.userList').toggleClass('show')
-                $('.userList').slideToggle()
             })
 
             var $resultBtn = $('.resultBtn');

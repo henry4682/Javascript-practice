@@ -19,6 +19,14 @@ body{
             list-style: none;
             li{
                 padding: 5px 15px;
+                &:has(ul.userList){
+                    height: 20px;
+                    transition: 0.5s  linear;
+                }
+                &:has(ul.show){
+                    height: 100%;
+                    transition: 0.5s  linear;
+                }
                 button{
                     background: transparent;
                     border: 0px solid transparent;
@@ -30,26 +38,29 @@ body{
                         position: absolute;
                         width: 0;
                         height: 0;
-                        border: 8px solid transparent;
-                        border-bottom: 10px solid #333;
-                        top: -3px;
+                        border: 10px solid transparent;
+                        border-top: 8px solid #333;
+                        top: 3px;
                     }
                     
                     &:has(+ ul.show)::after{
                         transform: rotateX(-180deg);
                         transition: 0.5s ;
-                        top: 0px;
+                        top: -3px;
                     }
                     
                 }
                 ul.userList{
-                    padding-left: 20px;
+                    padding-left: 15px;
+                    opacity: 0;
+                    transition: 0.5s linear;
                     li{
                         padding: 5px 0;
                     }
                 }
                 ul.show{
-                    display: block;
+                    opacity: 1;
+                    transition: 0.6s linear;
                 }
                 &.home-page {
                     padding: 5px 0px;

@@ -10,10 +10,8 @@ main aside {
   flex-direction: column;
   gap: 10px;
 }
-main aside span {
-  height: 100%;
-}
-main aside span h3 {
+main aside span p {
+  width: 50%;
   margin: 5px 0;
 }
 main aside span input {
@@ -24,11 +22,14 @@ main aside span input {
 main aside span h4.helping {
   color: #333;
 }
-main aside span h4.result {
-  display: block;
-  background-color: #999;
+main aside span h3.result {
+  width: 50%;
+  display: inline;
+  margin: 0;
+  background-color: #fff;
 }
 main aside span button {
+  padding: 5px 10px;
   background: #fff;
   border: 1px solid #333;
   border-radius: 1000px;
