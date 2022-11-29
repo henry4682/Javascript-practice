@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Free Wifi Search</title>
+    <link rel="stylesheet" href="/components/header&aside.css">
     <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script
@@ -14,38 +15,6 @@
     ></script>
   </head>
   <body>
-    <header>
-      <h1>Javascript & jQuery Practice</h1>
-  </header>
-  <aside class="menu">
-      <ul>
-        <li class="home-page">
-            <a href="https://henry4682.github.io/Javascript-practice/">首頁</a>
-        </li>
-        <li>
-          <a
-            href="https://henry4682.github.io/Javascript-practice/BMI_calculator/"
-            >BMI calculator</a
-          >
-        </li>
-        <li>
-          <a href="https://henry4682.github.io/Javascript-practice/Calculator/"
-            >Calculator</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://henry4682.github.io/Javascript-practice/Free_Wifi_Search/"
-            >Free Wifi Search</a
-          >
-        </li>
-        <li>
-          <a href="https://henry4682.github.io/Javascript-practice/TODO_List/"
-            >TODO list</a
-          >
-        </li>
-      </ul>
-  </aside>
     <main>
       <div class="try"></div>
       <h2>iTaiwan 免費Wifi熱點</h2>
@@ -119,7 +88,14 @@
     </main>
     <script>
       $(() => {
-        //待開發:按地址或地點搜尋用input radio、串接地圖api
+        $.get('/components/header&aside.html',function(result){
+                $(result).prependTo('body')
+            })
+            
+            $('body').on('click','.toggle',() => {
+                $('.userList').toggleClass('show')
+                $('.userList').slideToggle()
+            })
 
         $searchInput = $(".search-input");
         $countySelector = $(".county-selector");

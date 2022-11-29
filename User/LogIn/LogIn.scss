@@ -1,38 +1,4 @@
-body{
-    margin: 0;
-    display: grid;
-    grid-template-areas: 
-    'header header header header header header'
-    'aside main main main main main'
-    'aside main main main main main';
-    font-family: Arial, Helvetica, sans-serif;
-    header{
-        grid-area: header;
-        text-align: center;
-        background-color:burlywood;
-    }
-    aside.menu{
-        grid-area: aside;
-        background-color: antiquewhite;
-        height: calc(100vh - 80px - 8px)  ;
-        ul{
-            list-style: none;
-            li{
-                padding: 5px 15px;
-                &.home-page {
-                    padding: 5px 0px;
-                }
-                &:hover{
-                       
-                    background-color: aqua;
-                }
-                a{
-                    color: #333;
-                    text-decoration: none;
-                }
-            }
-        }
-    }
+
     main{
         grid-area: main;
         background-color: bisque;
@@ -68,4 +34,3 @@ body{
             }
         }
     }
-}

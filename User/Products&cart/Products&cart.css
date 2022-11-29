@@ -1,66 +1,34 @@
-body {
-  margin: 0;
-  display: grid;
-  grid-template-areas: "header header header header header header" "aside main main main main main" "aside main main main main main";
-  font-family: Arial, Helvetica, sans-serif;
-}
-body header {
-  grid-area: header;
-  text-align: center;
-  background-color: burlywood;
-}
-body aside.menu {
-  grid-area: aside;
-  background-color: antiquewhite;
-  height: calc(100vh - 80px - 8px);
-}
-body aside.menu ul {
-  list-style: none;
-}
-body aside.menu ul li {
-  padding: 5px 15px;
-}
-body aside.menu ul li.home-page {
-  padding: 5px 0px;
-}
-body aside.menu ul li:hover {
-  background-color: aqua;
-}
-body aside.menu ul li a {
-  color: #333;
-  text-decoration: none;
-}
-body main {
+main {
   grid-area: main;
   background-color: bisque;
   display: flex;
   justify-content: space-evenly;
 }
-body main section.products table {
+main section.products table {
   border: 3px solid #333;
   border-collapse: collapse;
 }
-body main section.products table th, body main section.products table td {
+main section.products table th, main section.products table td {
   border: 1px solid #333;
 }
-body main section.cart table {
+main section.cart table {
   border: 3px solid #333;
   border-collapse: collapse;
 }
-body main section.cart table th, body main section.cart table td {
+main section.cart table th, main section.cart table td {
   border: 1px solid #333;
 }
-body main section.cart table tbody td.amount {
+main section.cart table tbody td.amount {
   display: flex;
   align-items: center;
 }
-body main section.cart table tbody td.amount input {
+main section.cart table tbody td.amount input {
   width: 30px;
   text-align: center;
 }
-body main section.cart table tbody td.subTotal {
+main section.cart table tbody td.subTotal {
   text-align: right;
 }
-body main section.cart table tfoot :nth-child(1) {
+main section.cart table tfoot :nth-child(1) {
   text-align: right;
 }/*# sourceMappingURL=Products&cart.css.map */

@@ -5,42 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in</title>
+    <link rel="stylesheet" href="/components/header&aside.css">
     <link rel="stylesheet" href="LogIn.css">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js' integrity='sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==' crossorigin='anonymous'></script>
+   
+    
 </head>
 <body>
-    <header>
-        <h1>Javascript & jQuery Practice</h1>
-    </header>
-    <aside class="menu">
-        <ul>
-          <li class="home-page">
-              <a href="https://henry4682.github.io/Javascript-practice/">首頁</a>
-          </li>
-          <li>
-            <a
-              href="https://henry4682.github.io/Javascript-practice/BMI_calculator/"
-              >BMI calculator</a
-            >
-          </li>
-          <li>
-            <a href="https://henry4682.github.io/Javascript-practice/Calculator/"
-              >Calculator</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://henry4682.github.io/Javascript-practice/Free_Wifi_Search/"
-              >Free Wifi Search</a
-            >
-          </li>
-          <li>
-            <a href="https://henry4682.github.io/Javascript-practice/TODO_List/"
-              >TODO list</a
-            >
-          </li>
-        </ul>
-    </aside>
+    
     <main>
       <h2>會員登入</h2>
         <div class="log-in-card">
@@ -51,6 +23,16 @@
     </main>
     <script>
         $(function(){
+            // 載入header和aside
+            $.get('/components/header&aside.html',function(result){
+                $(result).prependTo('body')
+            })
+            // 綁定.toggle 按鈕事件
+            $('body').on('click','.toggle',() => {
+                $('.userList').toggleClass('show')
+                $('.userList').slideToggle()
+            })
+
             let oldUser = {
                 account : 'apple',
                 password : '12345', 

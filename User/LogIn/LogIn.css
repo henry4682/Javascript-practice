@@ -1,43 +1,11 @@
-body {
-  margin: 0;
-  display: grid;
-  grid-template-areas: "header header header header header header" "aside main main main main main" "aside main main main main main";
-  font-family: Arial, Helvetica, sans-serif;
-}
-body header {
-  grid-area: header;
-  text-align: center;
-  background-color: burlywood;
-}
-body aside.menu {
-  grid-area: aside;
-  background-color: antiquewhite;
-  height: calc(100vh - 80px - 8px);
-}
-body aside.menu ul {
-  list-style: none;
-}
-body aside.menu ul li {
-  padding: 5px 15px;
-}
-body aside.menu ul li.home-page {
-  padding: 5px 0px;
-}
-body aside.menu ul li:hover {
-  background-color: aqua;
-}
-body aside.menu ul li a {
-  color: #333;
-  text-decoration: none;
-}
-body main {
+main {
   grid-area: main;
   background-color: bisque;
 }
-body main h2 {
+main h2 {
   text-align: center;
 }
-body main .log-in-card {
+main .log-in-card {
   width: 20%;
   min-height: 200px;
   background-color: rgb(255, 174, 144);
@@ -49,18 +17,18 @@ body main .log-in-card {
   justify-content: space-around;
   align-items: center;
 }
-body main .log-in-card button {
+main .log-in-card button {
   background-color: red;
   color: #fff;
   border: 0px solid transparent;
   border-radius: 25px;
   padding: 5px 15px;
 }
-body main .log-in-card button:hover {
+main .log-in-card button:hover {
   box-shadow: 1px 1px #333;
   cursor: pointer;
 }
-body main .log-in-card button a {
+main .log-in-card button a {
   text-decoration: none;
   color: #fff;
 }/*# sourceMappingURL=LogIn.css.map */

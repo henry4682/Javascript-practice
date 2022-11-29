@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  display: grid;
+  grid-template-areas: "header header header header header header" "aside main main main main main" "aside main main main main main";
+  font-family: Arial, Helvetica, sans-serif;
+}
+body header {
+  grid-area: header;
+  text-align: center;
+  background-color: burlywood;
+}
+body aside.menu {
+  grid-area: aside;
+  background-color: antiquewhite;
+  height: calc(100vh - 80px);
+}
+body aside.menu ul {
+  list-style: none;
+}
+body aside.menu ul li {
+  padding: 5px 15px;
+}
+body aside.menu ul li button {
+  background: transparent;
+  border: 0px solid transparent;
+  font-size: 16px;
+  padding: 0;
+  position: relative;
+}
+body aside.menu ul li button::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-bottom: 10px solid #333;
+  top: -3px;
+}
+body aside.menu ul li button:has(+ ul.show)::after {
+  transform: rotateX(-180deg);
+  transition: 0.5s;
+  top: 0px;
+}
+body aside.menu ul li ul.userList {
+  padding-left: 20px;
+}
+body aside.menu ul li ul.userList li {
+  padding: 5px 0;
+}
+body aside.menu ul li ul.show {
+  display: block;
+}
+body aside.menu ul li.home-page {
+  padding: 5px 0px;
+}
+body aside.menu ul li:hover {
+  background-color: rgb(255, 246, 233);
+}
+body aside.menu ul li a {
+  color: #333;
+  text-decoration: none;
+}/*# sourceMappingURL=header&aside.css.map */

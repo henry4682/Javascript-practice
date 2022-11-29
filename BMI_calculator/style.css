@@ -1,98 +1,66 @@
-body {
-  margin: 0;
-  display: grid;
-  grid-template-areas: "header header header header header header" "aside main main main main main" "aside main main main main main";
-  font-family: Arial, Helvetica, sans-serif;
-}
-body header {
-  grid-area: header;
-  text-align: center;
-  background-color: burlywood;
-}
-body aside.menu {
-  grid-area: aside;
-  background-color: antiquewhite;
-  height: calc(100vh - 80px - 8px);
-}
-body aside.menu ul {
-  list-style: none;
-}
-body aside.menu ul li {
-  padding: 5px 15px;
-}
-body aside.menu ul li.home-page {
-  padding: 5px 0px;
-}
-body aside.menu ul li:hover {
-  background-color: aqua;
-}
-body aside.menu ul li a {
-  color: #333;
-  text-decoration: none;
-}
-body main {
+main {
   background-color: bisque;
   grid-area: main;
   display: flex;
   justify-content: center;
 }
-body main aside {
+main aside {
   width: 40%;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-body main aside span {
+main aside span {
   height: 100%;
 }
-body main aside span h3 {
+main aside span h3 {
   margin: 5px 0;
 }
-body main aside span input {
+main aside span input {
   width: 200px;
   margin: 5px 0;
   border-radius: 5px;
 }
-body main aside span h4.helping {
+main aside span h4.helping {
   color: #333;
 }
-body main aside span h4.result {
+main aside span h4.result {
   display: block;
   background-color: #999;
 }
-body main aside span button {
+main aside span button {
   background: #fff;
   border: 1px solid #333;
   border-radius: 1000px;
   width: 25%;
 }
-body main aside span button:active, body main aside span button:hover {
+main aside span button:active, main aside span button:hover {
   cursor: pointer;
 }
-body main aside ul {
+main aside ul {
   display: flex;
   flex-direction: column;
   height: 100%;
   list-style: none;
 }
-body main aside ul li {
+main aside ul li {
   height: 25%;
   padding: 5px;
   margin: 5px 0;
 }
-body main aside ul li.light {
+main aside ul li.light {
   background: rgba(64, 237, 179, 0.63);
 }
-body main aside ul li.normal {
+main aside ul li.normal {
   background: rgb(27, 226, 23);
 }
-body main aside ul li.heavy {
+main aside ul li.heavy {
   background: orange;
 }
-body main aside ul li.fat {
+main aside ul li.fat {
   background: red;
 }
-body main aside ul li.grey {
+main aside ul li.grey {
   background: #666;
   color: #999;
   opacity: 0.5;
