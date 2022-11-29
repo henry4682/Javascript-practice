@@ -19,6 +19,6 @@
    (2).[LogIn](https://henry4682.github.io/Javascript-practice/User/LogIn/) 
    功能：會員登入、表單檢查(有無空白、帳號或密碼有無錯誤)
    使用技術：jQuery, scss
-   (3).[Products&cart](https://henry4682.github.io/Javascript-practice/User/Products&cart/) 
-   功能：商品清單呈現、加入購物車、個別商品小計和購物車總計計算、避免重複加入、透過點擊按鈕或修改input調整數量、小計和總計
+   (3).[Products&cart](https://henry4682.github.io/Javascript-practice/User/Products&cart/) <br/>
+   功能：商品清單呈現、加入購物車、個別商品小計和購物車總計計算、避免重複加入、透過點擊按鈕或修改input調整數量、小計和總計<br/>
    使用技術：jQuery, scss
