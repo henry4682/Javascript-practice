@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO-List</title>
-    <link rel="stylesheet" href="/components/header&aside.css">
+    <link rel="stylesheet" href="../components/header&aside.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
@@ -55,7 +55,7 @@
     <script>
         $(function() {
             // 載入header和aside
-            $.get('/components/header&aside.html',function(result){
+            $.get('https://henry4682.github.io/Javascript-practice/components/',function(result){
                 $(result).prependTo('body')
             })
             // 綁定.toggle 按鈕事件
