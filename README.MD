@@ -1,5 +1,4 @@
 # Javascript & jQuery Practice
-[首頁](https://henry4682.github.io/Javascript-practice/)
 1. [BMI calculator](https://henry4682.github.io/Javascript-practice/BMI_calculator/) <br/>
    ![BMI_Calculator1](picture/BMI_calculator.png)
    ![BMI_Calculator2](picture/BMI_calculator2.png)
@@ -11,10 +10,10 @@
    使用技術：jQuery, scss
 3. [Free Wifi Search](https://henry4682.github.io/Javascript-practice/Free_Wifi_Search/) <br/>
    ![Free Wifi Search](picture/Free_Wifi_search.png)
-   功能：搜尋、篩選(select)、限定搜尋(input type='radio'),讀取google maps api, 重新定位 <br/>
+   功能：搜尋、篩選(select)、限定搜尋(input type='radio')、讀取google maps api、重新定位 <br/>
    使用技術：jQuery, Ajax, scss, Google maps api, [cors-anywhere](https://github.com/Rob--W/cors-anywhere)
 4. [TODO list](https://henry4682.github.io/Javascript-practice/TODO_List/) <br/>
-   ![ODO List](picture/TODO_List.png)
+   ![TODO List](picture/TODO_List.png)
    功能：新增、修改、刪除TODO <br/>
    使用技術：jQuery, scss
 5. User Features <br/>
