@@ -29,3 +29,5 @@
    ![Products%cart](picture/Products&cart.png)
    功能：商品清單呈現、加入購物車、個別商品小計和購物車總計計算、避免商品重複加入購物車、透過點擊按鈕或修改input調整商品數量、小計和總計、刪除購物車內商品並修改總計、<br/>
    使用技術：jQuery, scss
+6. [demo](https://henry4682.github.io/Javascript-practice/demo/) <br/>
+   

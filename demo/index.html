@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人資料表demo</title>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- 自訂css -->
+    <link rel="stylesheet"  href="style.css">
+    
+</head>
+<body>
+    <div class="container">
+        <div>個人資料表demo</div>
+        <br />
+        <div>
+            <button id="addbutton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#add" >新增</button>
+            <button id="searchbutton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#search">搜尋</button>
+            <span id="keywords"></span>
+        </div>
+
+        <br />
+        <div class="table-responsive">
+            <table class="table" id="cardtable" >
+                <thead>
+                    <tr>
+                        <th>中文名字</th>
+                        <th>英文名字</th>
+                        <th>性別</th>
+                        <th>手機</th>
+                        <th>電子信箱</th>
+                        <th>修改</th>
+                        <th>刪除</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!--新增表單-->
+
+        <div class="modal fade" title="新增表單" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel">新增表單
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">中文姓名:</label>
+                                <input type="text" class="form-control" id="addcnname" placeholder="請輸入中文姓名" required aria-describedby="cnname-error">
+                                <span  class="help-block cnname-error" ></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">英文姓名:</label>
+                                <input type="text" class="form-control" id="addenname" placeholder="請輸入英文姓名" >
+                            </div>
+                            <div class="form-group">
+                                <label for="seenname" class="col-form-label">手機:</label>
+                                <input type="tel" class="form-control" id="addtel" placeholder="請輸入手機號碼" aria-describedby="tel-error" >
+                                <span class="help-block tel-error" ></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="seenname" class="col-form-label">電子信箱:</label>
+                                <input type="email" class="form-control" id="addemail" placeholder="請輸入電子信箱" aria-describedby="email-error" >
+                                <span class="help-block email-error" ></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" name="addsex" class="col-form-label">性別:</label>
+                                <div>
+                                    <label>
+                                        <input type="radio" name="addsex" value="man" class="radio" checked>
+                                        男
+                                    </label> 
+                                    <label>
+                                        <input type="radio" name="addsex" value="woman" class="radio">
+                                        女
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="form-add">新增</button>
+                        <button type="button" class="btn" id="reset-add">重新填寫</button>
+                        <button type="button" class="btn btn-secondary" id="cancel-add">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--搜尋表單-->
+        <div class="modal fade" title="搜尋表單" id="search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel">搜尋表單
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="searchcnname" class="col-form-label">中文姓名:</label>
+                                <input type="text" class="form-control" id="searchcnname" placeholder="請輸入中文姓名">
+                            </div>
+                            <div class="form-group">
+                                <label for="searchenname" class="col-form-label">英文姓名:</label>
+                                <input type="text" class="form-control" id="searchenname" placeholder="請輸入英文姓名" >
+                            </div>
+                            <div class="form-group">
+                                <label for="searchenname" class="col-form-label">手機:</label>
+                                <input type="tel" class="form-control" id="searchtel" placeholder="請輸入手機號碼" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="searchemail" class="col-form-label">電子信箱:</label>
+                                <input type="email" class="form-control" id="searchemail" placeholder="請輸入電子信箱" required aria-describedby="helpBlock2">
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" name="searchsex" class="col-form-label">性別:</label>
+                                <div>
+                                    <label>
+                                        <input type="radio" name="searchsex" value="man" class="radio" >
+                                        男
+                                    </label> 
+                                    <label>
+                                        <input type="radio" name="searchsex" value="woman" class="radio">
+                                        女
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="form-search">搜尋</button>
+                        <button type="button" class="btn" id="reset-search">重新填寫</button>
+                        <button type="button" class="btn btn-secondary" id="cancel-search">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--修改表單-->
+
+        <div class="modal fade" title="修改表單" id="modify" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel">修改表單
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">中文姓名:</label>
+                                <input type="text" class="form-control" id="modifycnname" placeholder="請輸入中文姓名" required aria-describedby="cnname-error">
+                                <span  class="help-block cnname-error" ></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">英文姓名:</label>
+                                <input type="text" class="form-control" id="modifyenname" placeholder="請輸入英文姓名" >
+                            </div>
+                            <div class="form-group">
+                                <label for="seenname" class="col-form-label">手機:</label>
+                                <input type="tel" class="form-control" id="modifytel" placeholder="請輸入手機號碼" aria-describedby="tel-error" >
+                                <span class="help-block tel-error" ></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="seenname" class="col-form-label">電子信箱:</label>
+                                <input type="email" class="form-control" id="modifyemail" placeholder="請輸入電子信箱" aria-describedby="email-error" >
+                                <span  class="help-block email-error" ></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" name="modifysex" class="col-form-label">性別:</label>
+                                <div>
+                                    <label>
+                                        <input type="radio" id="man" name="modifysex" value="man" class="radio" >
+                                        男
+                                    </label> 
+                                    <label>
+                                        <input type="radio" id="woman" name="modifysex" value="woman" class="radio">
+                                        女
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="form-modify">修改</button>
+                        <button type="button" class="btn" id="reset-modify">重新填寫</button>
+                        <button type="button" class="btn btn-secondary" id="cancel-modify">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 刪除 modal -->
+        
+        <div class="modal fade" title="刪除資料" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel">刪除資料
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </h4>
+                    </div>
+                    <div class="modal-body ">
+                        <div >確定要刪除資料?</div> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary col-1" id="delete">刪除</button>
+                        <button type="button" class="btn btn-secondary col-1" id="cancel-delete">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+<script src="demo.js"></script>
+
+</body>
+</html>
