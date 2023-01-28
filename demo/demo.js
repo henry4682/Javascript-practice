@@ -127,8 +127,6 @@ $(document).ready(function () {
             var email = $("#searchemail").val().trim();
             var sex = $("input:radio:checked[name='searchsex']").val() === 'man' ?  '0' : $("input:radio:checked[name='searchsex']").val() === 'woman' ? '1' : '';
     
-            
-            
             newData = data.filter((item,i) =>{ 
 
                 switch(true){
@@ -151,7 +149,6 @@ $(document).ready(function () {
                 
             })
 
-            $("#keywords").text(`${cnname},${enname},${tel},${email},${sex}`)
             refreshTable(newData);
     
             clearForm(search);
@@ -282,8 +279,8 @@ $(document).ready(function () {
     // 刪除鈕
     $("#delete").click(function () {
         let s_sn = $("#delete-modal .modal-title").text().split("#")[1]
-        oldData = oldData.filter((item,i) => item.s_sn !== s_sn);
-        refreshTable(oldData);
+        data = data.filter((item,i) => item.s_sn !== s_sn);
+        refreshTable(data);
         $("#delete-modal").modal('hide');
     }) 
     // 取消刪除按鈕
@@ -299,25 +296,32 @@ $(document).ready(function () {
 function refreshTable(data) {
     // var HTML = '';
     $("#cardtable tbody > tr").remove();
-    $.each(data, function (key, item) {
-        var strsex = '';
-        if (item.sex == 0)
-            strsex = '男';
-        else
-            strsex = '女';
-        phone = item.tel.slice(0,4) + '-' +item.tel.slice(4,7) + '-' + item.tel.slice(7)
-        
-        var row = $("<tr></tr>");
-        row.append($(`<td data-toggle='tooltip' data-container='body'  data-placement='right' title='[${strsex}]${item.cnname}(${item.enname})'></td>`).html(item.cnname));
-        row.append($('<td data-toggle="tooltip" data-container="body" data-placement="right" title="['+ strsex + ']'+ item.cnname +'('+ item.enname +')"></td>').html(item.enname));
-        row.append($("<td></td>").html(strsex));
-        row.append($("<td class='phone' data-container='body' data-toggle='popover'  data-content='聯絡方式:"+ phone +"' ></td>" ).html(item.tel));
-        row.append($("<td></td>").html(item.email));
-        row.append($("<td></td>").html('<button type="button" id="modifybutton' + item.s_sn + '" class="btn modifybutton" data-toggle="modal" data-target="#modify" data-info='+ JSON.stringify(item) + ' >修改 <span class="glyphicon glyphicon-list-alt"></span></button>'));
-        row.append($("<td></td>").html('<button type="button" id="deletebutton' + item.s_sn + '" class="btn deletebutton" data-toggle="modal" data-target="#delete-modal" data-info='+ JSON.stringify(item) + '  >刪除 <span class="glyphicon glyphicon-trash"></span></button>'));
-        $("#cardtable").append(row);
-    });
-
+    
+        let i = 0;
+        let inter = setInterval(function() {
+            if(i < data.length){
+                var strsex = '';
+                if (data[i].sex == 0)
+                    strsex = '男';
+                else
+                    strsex = '女';
+                phone = data[i].tel.slice(0,4) + '-' +data[i].tel.slice(4,7) + '-' + data[i].tel.slice(7)
+                
+                var row = $("<tr  class='animate__animated animate__fadeInUp'></tr>");
+                row.append($(`<td data-toggle='tooltip' data-container='body'  data-placement='right' title='[${strsex}]${data[i].cnname}(${data[i].enname})'></td>`).html(data[i].cnname));
+                row.append($('<td data-toggle="tooltip" data-container="body" data-placement="right" title="['+ strsex + ']'+ data[i].cnname +'('+ data[i].enname +')"></td>').html(data[i].enname));
+                row.append($("<td></td>").html(strsex));
+                row.append($("<td class='phone' data-container='body' data-toggle='popover'  data-content='聯絡方式:"+ phone +"' ></td>" ).html(data[i].tel));
+                row.append($("<td></td>").html(data[i].email));
+                row.append($("<td></td>").html('<button type="button" id="modifybutton' + data[i].s_sn + '" class="btn modifybutton" data-toggle="modal" data-target="#modify" data-info='+ JSON.stringify(data[i]) + ' >修改 <span class="glyphicon glyphicon-list-alt"></span></button>'));
+                row.append($("<td></td>").html('<button type="button" id="deletebutton' + data[i].s_sn + '" class="btn deletebutton" data-toggle="modal" data-target="#delete-modal" data-info='+ JSON.stringify(data[i]) + '  >刪除 <span class="glyphicon glyphicon-trash"></span></button>'));
+                $("#cardtable").append(row);
+                i++;
+            }else{
+                clearInterval(inter)
+            }
+        },250)
+       
     $('[data-toggle="tooltip"]').tooltip()
     $('[data-toggle="popover"]').popover()
 }
