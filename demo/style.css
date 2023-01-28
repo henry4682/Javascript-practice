@@ -1,12 +1,13 @@
 :root{
     /* 風格設定 */
+    /* 主題 天空藍 */
     --table-border: #007ca6;
     --thead-color:  #15b9ff;
     --cell-background-color1: #cef3ff;
     --cell-background-color2: #ecfbff;
     --th-cell-color:  #00637b;
     --td-cell-color:  #00637b;
-    --table-hover:#70d2ea8d;
+    --table-hover:#eadc708d;
     --btn-color:#15b9ff;
 }
 

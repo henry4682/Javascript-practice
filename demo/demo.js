@@ -316,14 +316,15 @@ function refreshTable(data) {
                 row.append($("<td></td>").html('<button type="button" id="modifybutton' + data[i].s_sn + '" class="btn modifybutton" data-toggle="modal" data-target="#modify" data-info='+ JSON.stringify(data[i]) + ' >修改 <span class="glyphicon glyphicon-list-alt"></span></button>'));
                 row.append($("<td></td>").html('<button type="button" id="deletebutton' + data[i].s_sn + '" class="btn deletebutton" data-toggle="modal" data-target="#delete-modal" data-info='+ JSON.stringify(data[i]) + '  >刪除 <span class="glyphicon glyphicon-trash"></span></button>'));
                 $("#cardtable").append(row);
+                $('[data-toggle="tooltip"]').tooltip()
+                $('[data-toggle="popover"]').popover()
                 i++;
             }else{
                 clearInterval(inter)
             }
         },250)
        
-    $('[data-toggle="tooltip"]').tooltip()
-    $('[data-toggle="popover"]').popover()
+    
 }
 
 /**
